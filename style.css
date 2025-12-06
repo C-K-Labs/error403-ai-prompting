@@ -700,58 +700,63 @@ body {
 }
 
 /* ===================================
-   MOBILE RESPONSIVE FIXES (Add to bottom of style.css)
+   MOBILE RESPONSIVE FIXES (FINAL)
    =================================== */
 
-   @media (max-width: 768px) {
-    /* 1. Fix Intro Menu Truncation (Allow Scrolling) */
+   @media screen and (max-width: 768px) {
+
+    /* 1. FORCE TOOL GRID LAYOUT
+       Targeting 'div.tool-grid[style]' overrides the HTML inline style.
+       Using !important ensures it applies on iPhone. */
+    div.tool-grid,
+    div.tool-grid[style] {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 Columns for Mobile */
+        width: 100% !important;
+        gap: 10px !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+    }
+
+    /* 2. FIX PART LABEL OVERLAP
+       This hides the text inside the <span> tag (e.g. ": Wrap-up & Resources") */
+    .part-label span.desktop-label {
+        display: none !important;
+    }
+
+    /* Adjust the label container to fit iPhone screen */
+    .part-label {
+        max-width: 140px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.8rem !important;
+        top: 1rem !important;
+        right: 1rem !important;
+        z-index: 9999 !important;
+    }
+
+    /* 3. FIX SCROLLING ISSUES */
     .intro-page {
         overflow-y: auto !important;
-        padding-top: 4rem; /* Ensure space at top */
-    }
-    .part-menu-content {
-        height: auto !important;
-        min-height: 100%;
-        padding-bottom: 4rem;
-        justify-content: flex-start; /* Align from top */
-    }
-    .part-menu-grid {
-        grid-template-columns: 1fr; /* Single column */
-        padding-bottom: 2rem;
+        padding-top: 80px !important;
+        padding-bottom: 60px !important;
+        -webkit-overflow-scrolling: touch !important; /* Smooth scroll on iOS */
     }
 
-    /* 2. Fix Horizontal Overflow in Tools (Force Wrap) */
-    .tool-grid, 
-    .tool-grid[style] { /* Override inline styles */
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns for mobile */
-        width: 100% !important;
-        flex-wrap: wrap !important;
-    }
-
-    /* 3. Simplify Part Label (Top Right) */
-    .part-label {
-        font-size: 0.9rem !important;
-        padding: 0.5rem 1rem !important;
-        right: 1rem !important;
-        top: 1rem !important;
-        max-width: 40%; /* Prevent overlap with menu button */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    /* Hides the subtitle (e.g., ": Foundation") on mobile */
-    /* Requires HTML change: <span class="desktop-label">...</span> */
-    .desktop-label {
-        display: none !important;
+    /* Prevent horizontal scrolling */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100vw !important;
     }
 }
 
-/* Fix for very small screens (older phones) */
-@media (max-width: 400px) {
-    .tool-grid, 
-    .tool-grid[style] {
-        grid-template-columns: 1fr !important; /* Single column */
+/* 4. IPHONE PORTRAIT MODE (Narrow Screens) 
+   Forces 1 column if the screen is too narrow for 2 columns */
+@media screen and (max-width: 480px) {
+    div.tool-grid,
+    div.tool-grid[style] {
+        grid-template-columns: 1fr !important; /* 1 Column Stack */
     }
 }
