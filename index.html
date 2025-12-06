@@ -28,7 +28,7 @@
 
                     <div class="audio-player">
                         <audio id="carol-audio" preload="auto">
-                            <source src="assets/audio/Can't Sleep Tonight.mp3" type="audio/mpeg">
+                            <source src="assets/audio/Can't Sleep Tonight.wav" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                         <button id="play-button" class="play-btn">
@@ -43,7 +43,6 @@
                 <div class="reveal-content">
                     <div class="reveal-lines">
                         <p class="reveal-line">I wrote this Christmas carol</p>
-                        <p class="reveal-line">I designed the album cover</p>
                         <p class="reveal-line">I created the UI design</p>
                         <p class="reveal-line">I developed this interactive web page</p>
                     </div>
@@ -131,11 +130,9 @@
                         <div class="page-body">
                             <p>Artificial Intelligence (AI) is a computer system that can learn from data, recognize patterns, and make decisions similar to human intelligence.</p>
                             <div class="ai-diagram">
-                                <div class="diagram-placeholder">
-                                    <p>[AI Learning Process Diagram]</p>
-                                    <p>Data Input → Model Learning → Output Generation</p>
-                                </div>
-                                <p class="diagram-caption">Image: ai-learning-diagram.svg</p>
+                                <img src="assets/images/part1/ai-learning-diagram.jpg" alt="AI Learning Process" style="width: 100%; max-width: 800px; border-radius: 12px; margin: 1.5rem auto; display: block;">
+                                <p style="text-align: left; margin-top: 1rem; color: #667eea; font-weight: 500;">AI Learning Process Diagram</p>
+                                <p style="text-align: left; color: #667eea; font-weight: 500;">Data Input → Model Learning → Output Generation</p>
                             </div>
                             <div class="content-note">
                                 <p><strong>Note:</strong> Additional explanation content will be provided verbally during the workshop.</p>
@@ -155,10 +152,8 @@
                                 <li><strong>Dataset Bias:</strong> AI trained on images where 10:10 is most common</li>
                                 <li><strong>Edinburgh University Study:</strong> "Most AI models fail to represent clock times accurately or stick to specific patterns"</li>
                             </ul>
-                            <div class="image-placeholder">
-                                <p>[Clock Examples Showing 10:10 Bias]</p>
-                                <p class="image-note">Image: clock-bias-examples.jpg</p>
-                            </div>
+                            <img src="assets/images/part1/clock-bias-examples.jpg" alt="Clock showing 10:10 bias" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 1.5rem auto; display: block;">
+                            <p style="text-align: center; margin-top: 0.5rem; color: #667eea; font-size: 0.95rem;">Clock bias examples</p>
                         </div>
                     </div>
                 </div>
@@ -174,10 +169,8 @@
                                 <li><strong>Physics Complexity:</strong> Glass reflection, transparency, liquid refraction</li>
                                 <li><strong>Technical Issue:</strong> AI draws the glass shape first, then tries to fill it causing boundary calculation errors</li>
                             </ul>
-                            <div class="image-placeholder">
-                                <p>[Wine Glass Rendering Failures]</p>
-                                <p class="image-note">Image: wine-glass-examples.jpg</p>
-                            </div>
+                            <img src="assets/images/part1/wine-glass-examples.jpg" alt="Wine glass rendering failures" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 1.5rem auto; display: block;">
+                            <p style="text-align: center; margin-top: 0.5rem; color: #667eea; font-size: 0.95rem;">Wine glass rendering challenges</p>
                         </div>
                     </div>
                 </div>
@@ -189,9 +182,15 @@
                             <div class="breakthrough-box">
                                 <h4>Recent Progress in Physical Consistency</h4>
                                 <p>The Nano Banana 2 model successfully generated both correct clock times and full wine glasses, showing significant progress in understanding physical consistency.</p>
-                                <div class="image-placeholder">
-                                    <p>[Nano Banana 2 Success Examples]</p>
-                                    <p class="image-note">Image: nano-banana-success.jpg</p>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem auto; max-width: 900px;">
+                                    <div style="text-align: center;">
+                                        <img src="assets/images/part1/nano-banana-success-clock.jpg" alt="Nano Banana 2 clock success" style="width: 100%; border-radius: 12px;">
+                                        <p style="margin-top: 0.5rem; color: #667eea; font-size: 0.95rem;">Clock: 3:15 correctly rendered</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <img src="assets/images/part1/nano-banana-success-wine.jpg" alt="Nano Banana 2 wine glass success" style="width: 100%; border-radius: 12px;">
+                                        <p style="margin-top: 0.5rem; color: #667eea; font-size: 0.95rem;">Wine glass: Filled to brim</p>
+                                    </div>
                                 </div>
                                 <p class="additional-challenges"><strong>Similar Challenges Being Solved:</strong></p>
                                 <ul class="bias-list">
@@ -469,31 +468,30 @@
                             <!-- Most Common Tools -->
                             <div class="tool-category">
                                 <h4>Most Common Tools</h4>
-                                <div class="tool-grid">
-                                    <a href="https://claude.ai" target="_blank" class="tool-card">
-                                        <div class="tool-icon-placeholder">
-                                            <img src="assets/icons/claude-logo.png" alt="Claude" />
-                                        </div>
+                                <div class="tool-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%;">
+        
+                                    <a href="https://claude.ai" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/claude-logo.png" alt="Claude" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
                                     </a>
-                                    <a href="https://chat.openai.com" target="_blank" class="tool-card">
-                                        <div class="tool-icon-placeholder">
-                                            <img src="assets/icons/chatgpt-logo.png" alt="ChatGPT" />
-                                        </div>
+                            
+                                    <a href="https://chat.openai.com" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/chatgpt-logo.png" alt="ChatGPT" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
                                     </a>
-                                    <a href="https://www.perplexity.ai" target="_blank" class="tool-card">
-                                        <div class="tool-icon-placeholder">
-                                            <img src="assets/icons/perplexity-logo.png" alt="Perplexity" />
-                                        </div>
+                            
+                                    <a href="https://www.perplexity.ai" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/perplexity-logo.png" alt="Perplexity" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
                                     </a>
-                                    <a href="https://gemini.google.com" target="_blank" class="tool-card">
-                                        <div class="tool-icon-placeholder">
-                                            <img src="assets/icons/gemini-logo.png" alt="Gemini" />
-                                        </div>
+                            
+                                    <a href="https://gemini.google.com" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/gemini-logo.png" alt="Gemini" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
                                     </a>
-                                    <a href="https://www.notion.so" target="_blank" class="tool-card">
-                                        <div class="tool-icon-placeholder">
-                                            <img src="assets/icons/notion-logo.png" alt="Notion" />
-                                        </div>
+                            
+                                    <a href="https://www.notion.so" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/notion-logo.png" alt="Notion" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
+                                    </a>
+                            
+                                    <a href="https://copilot.microsoft.com" target="_blank" class="tool-card" style="display: flex; align-items: center; justify-content: center; min-height: 120px;">
+                                        <img src="assets/icons/copilot-logo.png" alt="Microsoft Copilot" style="width: 100%; max-width: 100px; height: auto; object-fit: contain;" />
                                     </a>
                                 </div>
                             </div>
@@ -523,39 +521,52 @@
                 <!-- Page 3-2: Handwriting Recognition Test -->
                 <div class="part-page" id="page-3-2">
                     <div class="page-content">
-                        <h3 class="page-title">Handwriting Recognition Test</h3>
+                        <h3 class="page-title">Handwriting Recognition Test Results</h3>
                         <div class="page-body">
-                            <p>I tested multiple models with the same handwritten text to compare their recognition accuracy.</p>
-        
-                            <div class="image-placeholder">
-                                <p>[Handwriting Sample Image]</p>
-                                <p class="image-note">Image: handwriting-sample.jpg</p>
-                            </div>
-        
+                            <p>I tested 4 major models with a handwritten prompt containing <strong>8 intentional typos</strong> to see if they would transcribe strictly or hallucinate corrections.</p>
+                
+                            <img src="assets/images/part3/handwriting-sample.jpg" 
+                                 alt="Handwriting Sample with Typos" 
+                                 style="width: 100%; max-width: 800px; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                
+                            <p style="text-align: center; margin-bottom: 2rem; color: #667eea; font-weight: 500;">Click cards to view actual conversation evidence ↓</p>
+                
                             <div class="commandments-grid">
-                                <div class="commandment-card">
-                                    <div class="commandment-number">1</div>
-                                    <div class="commandment-title">ChatGPT</div>
-                                    <div class="commandment-preview">Click to view recognition result</div>
-                                </div>
-        
-                                <div class="commandment-card">
-                                    <div class="commandment-number">2</div>
-                                    <div class="commandment-title">Claude</div>
-                                    <div class="commandment-preview">Click to view recognition result</div>
-                                </div>
-        
-                                <div class="commandment-card">
-                                    <div class="commandment-number">3</div>
+                                <a href="https://gemini.google.com/share/27ca539b444d" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="commandment-number" style="background: linear-gradient(135deg, #4285F4, #34A853);">1</div>
                                     <div class="commandment-title">Gemini</div>
-                                    <div class="commandment-preview">Click to view recognition result</div>
-                                </div>
-        
-                                <div class="commandment-card">
-                                    <div class="commandment-number">4</div>
+                                    <div class="commandment-preview">
+                                        <strong>Most Accurate (Strict)</strong><br>
+                                        Caught almost all typos exactly as instructed. It followed the "do not correct" rule perfectly.
+                                    </div>
+                                </a>
+                
+                                <a href="https://claude.ai/share/9f45eb7b-a525-42b7-af18-4c7d612e417f" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="commandment-number" style="background: #d97757;">2</div>
+                                    <div class="commandment-title">Claude</div>
+                                    <div class="commandment-preview">
+                                        <strong>Over-Helpful</strong><br>
+                                        Failed the strict test because it "fixed" the typos automatically. Good for editing, bad for forensics.
+                                    </div>
+                                </a>
+                
+                                <a href="https://chatgpt.com/share/6933fb8d-0a68-8006-a2f5-e4b496efff63" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="commandment-number" style="background: #10a37f;">3</div>
+                                    <div class="commandment-title">ChatGPT</div>
+                                    <div class="commandment-preview">
+                                        <strong>Mixed Results</strong><br>
+                                        Hallucinated fixes for about half the typos. Failed to maintain data integrity completely.
+                                    </div>
+                                </a>
+                
+                                <a href="https://chat.deepseek.com/share/ktqlqt8f2lvmqq8qj6" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="commandment-number" style="background: #4b9ae5;">4</div>
                                     <div class="commandment-title">DeepSeek</div>
-                                    <div class="commandment-preview">Click to view recognition result</div>
-                                </div>
+                                    <div class="commandment-preview">
+                                        <strong>OCR Failure</strong><br>
+                                        Generated nonsensical words ("envelope" instead of "knowledge"). Vision capabilities are lacking.
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -568,10 +579,8 @@
                         <div class="page-body">
                             <p>Research-based comparison of how often different models produce incorrect or fabricated information.</p>
         
-                            <div class="image-placeholder">
-                                <p>[Hallucination Rate Comparison Chart]</p>
-                                <p class="image-note">Image: hallucination-comparison.jpg</p>
-                            </div>
+                            <img src="assets/images/part3/hallucination-comparison.jpg" alt="Hallucination rate comparison" style="width: 100%; max-width: 800px; border-radius: 12px; margin: 1.5rem auto; display: block;">
+                            <p style="text-align: center; margin-top: 0.5rem; color: #667eea; font-size: 0.95rem;">Hallucination rate comparison across models</p>
         
                             <div class="content-note">
                                 <p><strong>Note:</strong> Hallucination rates vary based on task complexity, domain specificity, and prompt quality. These comparisons are based on general benchmarks and real-world testing.</p>
@@ -583,65 +592,68 @@
                 <!-- Page 3-4: Why I Use Claude -->
                 <div class="part-page" id="page-3-4">
                     <div class="page-content">
-                        <h3 class="page-title">Why I Use Claude</h3>
+                        <h3 class="page-title">Why I Still Use Claude</h3>
                         <div class="page-body">
                             <div class="hallucination-box">
-                                <h4>My Personal Experience</h4>
-                                <p>After extensive testing across multiple use cases, Claude consistently delivers superior results in areas that matter most for my work:</p>
-        
+                                <h4>It's About "Intent," Not Just "Accuracy"</h4>
+                                
+                                <p>In the previous test, <strong>Gemini</strong> won the "Strict Accuracy" challenge by following my instructions strictly. <strong>Claude</strong> failed because it tried to "fix" my mistakes.</p>
+                                
+                                <p>However, this "failure" is exactly why Claude is my primary driver for work.</p>
+                
                                 <div class="hallucination-examples">
                                     <div class="example-item">
-                                        <strong>Image Recognition:</strong> Claude accurately interprets complex images, diagrams, and visual content with minimal errors. It understands context and relationships within images better than other models I've tested.
+                                        <strong>The "Smart Editor" Advantage:</strong> 
+                                        Did you see how Claude fixed my typos even when I told it not to? In forensics, that's a failure. But in <strong>Writing</strong>, that's a superpower. It understands what I <em>meant</em> to write, not just what I wrote.
                                     </div>
                                     <div class="example-item">
-                                        <strong>PDF Processing:</strong> Excellent at extracting and understanding information from PDF documents, maintaining context and structure. It handles multi-page documents, tables, and mixed content formats effectively.
+                                        <strong>Coding Context:</strong> 
+                                        When I paste broken code with syntax errors (typos), I don't want an AI that points out the error strictly. I want an AI that <strong>fixes the logic</strong>. Claude prioritizes the <em>goal</em> over the <em>literal instruction</em>.
                                     </div>
                                     <div class="example-item">
-                                        <strong>Lower Hallucination Rate:</strong> In my experience, Claude produces fewer fabricated facts and is more likely to acknowledge uncertainty. When it doesn't know something, it says so rather than making up plausible-sounding information.
-                                    </div>
-                                    <div class="example-item">
-                                        <strong>Natural Writing Style:</strong> The output reads more naturally and requires less editing to remove AI fingerprints. It avoids the common phrases and patterns that make AI-generated text immediately recognizable.
+                                        <strong>Natural Nuance:</strong> 
+                                        Gemini acts like a strict robot. Claude feels like a smart colleague who quietly fixes your mistakes before submitting the report.
                                     </div>
                                 </div>
-        
+                                
                                 <p class="content-note" style="margin-top: 2rem; background: transparent; border: none; padding: 0;">
-                                    <strong>Note:</strong> This is based on my personal experience with specific use cases. Your needs may differ, and other models might work better for your particular tasks. I encourage you to test multiple models and find what works best for you.
+                                    <strong>Conclusion:</strong> Use <strong>Gemini</strong> when you need strict data extraction or Google integration. Use <strong>Claude</strong> when you need a partner to understand your complex goals and write naturally.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
         
-                <!-- Page 3-5: Free vs. Paid Features -->
+                <!-- Page 3-5: Advanced Features & Efficiency Tips -->
                 <div class="part-page" id="page-3-5">
                     <div class="page-content">
-                        <h3 class="page-title">Free vs. Paid Features</h3>
+                        <h3 class="page-title">Advanced Features & Efficiency Tips</h3>
                         <div class="page-body">
-                            <p>Understanding the differences between free and paid tiers helps you make informed decisions about which tools to invest in.</p>
-        
+                            <p>Master these advanced features and optimization techniques to use AI more professionally and efficiently.</p>
+                
                             <div class="commandments-grid">
                                 <div class="commandment-card" data-feature="projects">
                                     <div class="commandment-number">1</div>
                                     <div class="commandment-title">Projects</div>
-                                    <div class="commandment-preview">Claude & ChatGPT workspace feature</div>
+                                    <div class="commandment-preview">Managing dedicated workspaces with custom context</div>
                                 </div>
-        
+                
                                 <div class="commandment-card" data-feature="artifacts">
                                     <div class="commandment-number">2</div>
                                     <div class="commandment-title">Artifacts</div>
-                                    <div class="commandment-preview">Claude's interactive content panel</div>
+                                    <div class="commandment-preview">Claude's interactive content creation panel</div>
                                 </div>
-        
-                                <div class="commandment-card" data-feature="token-limits">
+                
+                                <div class="commandment-card" data-feature="token-saving">
                                     <div class="commandment-number">3</div>
-                                    <div class="commandment-title">Token Limits</div>
-                                    <div class="commandment-preview">Message and context window comparison</div>
+                                    <div class="commandment-title">Token Efficiency</div>
+                                    <div class="commandment-preview">Strategies to manage context and avoid "lazy" AI</div>
                                 </div>
-        
+                
                                 <div class="commandment-card" data-feature="mem0">
                                     <div class="commandment-number">4</div>
                                     <div class="commandment-title">mem0 Extension</div>
-                                    <div class="commandment-preview">Free alternative for memory management</div>
+                                    <div class="commandment-preview">Free tool for long-term memory management</div>
                                 </div>
                             </div>
                         </div>
@@ -739,29 +751,29 @@
                         <h3 class="page-title">Perplexity Finance Use Cases</h3>
                         <div class="page-body">
                             <p>Perplexity's real-time search capabilities combined with AI analysis make it exceptionally powerful for financial research and market analysis.</p>
-        
+                
                             <div class="commandments-grid">
-                                <div class="commandment-card">
+                                <div class="commandment-card" onclick="openModal('Real-time Earnings Call Analysis', '<img src=\'assets/images/part4/perplexity-finance-usmarket.jpg\' alt=\'Market Analysis\' style=\'width:100%; height:auto; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);\'> <p style=\'margin-top:1rem; color:#666;\'>Perplexity provides comprehensive market summaries and real-time sentiment analysis.</p>');">
                                     <div class="commandment-number">📊</div>
                                     <div class="commandment-title">Real-time Earnings Call Analysis</div>
-                                    <div class="commandment-preview">Access and analyze earnings calls as they happen. Get instant summaries of key financial metrics, management commentary, and analyst questions.</div>
+                                    <div class="commandment-preview">Click to view example: Access and analyze earnings calls as they happen with instant summaries.</div>
                                 </div>
-        
-                                <div class="commandment-card">
-                                    <div class="commandment-number">📑</div>
-                                    <div class="commandment-title">SEC Document Search</div>
-                                    <div class="commandment-preview">Query specific information across 10-K, 10-Q, 8-K filings and other SEC documents. Extract relevant data without reading entire reports.</div>
-                                </div>
-        
-                                <div class="commandment-card">
+                
+                                <div class="commandment-card" onclick="openModal('Stock Price Event Correlation', '<img src=\'assets/images/part4/perplexity-finance-nvidia.jpg\' alt=\'NVIDIA Analysis\' style=\'width:100%; height:auto; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);\'> <p style=\'margin-top:1rem; color:#666;\'>Detailed stock analysis correlating news events with price movements (Example: NVIDIA).</p>');">
                                     <div class="commandment-number">📈</div>
                                     <div class="commandment-title">Stock Price Event Correlation</div>
-                                    <div class="commandment-preview">Analyze how specific events correlate with stock price movements. Identify patterns between news, announcements, and market reactions.</div>
+                                    <div class="commandment-preview">Click to view example: Analyze how specific events correlate with stock price movements.</div>
                                 </div>
+                
+                                <a href="https://www.perplexity.ai/finance" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit; display: block;">
+                                    <div class="commandment-number">🔗</div>
+                                    <div class="commandment-title">Perplexity Finance</div>
+                                    <div class="commandment-preview">Visit the dedicated Perplexity Finance dashboard to explore real-time data yourself.</div>
+                                </a>
                             </div>
-        
+                
                             <div class="content-note">
-                                <p><strong>Pro Tip:</strong> Perplexity Pro provides access to real-time data and advanced models. Students can get free access with a .edu email address.</p>
+                                <p><strong>Pro Tip:</strong> Click the cards above to see actual interface examples, or visit the link to try it live.</p>
                             </div>
                         </div>
                     </div>
@@ -798,13 +810,17 @@
                                 <h4>Exploiting AI Reasoning Processes</h4>
                                 
                                 <p><strong>Concept:</strong> This technique exploits the AI's reasoning process by disguising harmful requests as logical puzzles or hypothetical scenarios.</p>
-        
+                
+                                <img src="assets/images/part4/chain-of-thought-hijacking.jpg" 
+                                     alt="Chain of Thought Hijacking Example" 
+                                     style="width: 100%; max-width: 700px; border-radius: 12px; margin: 1.5rem auto; display: block; border: 1px solid #ddd;">
+                
                                 <p><strong>How It Works:</strong> When AI enters "reasoning mode" to solve complex problems step by step, it may temporarily bypass safety filters. By framing a request as an intellectual exercise or thought experiment, attackers can trick the model into providing information it would normally refuse.</p>
-        
+                
                                 <p><strong>Example Structure:</strong> Instead of directly asking for harmful information, frame it as "If we were analyzing the logic of X for academic purposes, what would the step-by-step reasoning process look like?"</p>
-        
+                
                                 <p><strong>Why This Works:</strong> AI models prioritize being helpful and thorough in their explanations. When they detect a reasoning task, they focus on logical completeness, which can override safety considerations.</p>
-        
+                
                                 <div class="example-item">
                                     <strong>Defense Mechanisms:</strong> Modern AI systems are being trained to recognize these patterns and maintain safety constraints even during complex reasoning tasks. However, this remains an active area of security research.
                                 </div>
@@ -867,38 +883,9 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- Page 4-6: Interactive Demo -->
+                             
+                <!-- Page 4-6: Why This Matters for AI Security -->
                 <div class="part-page" id="page-4-6">
-                    <div class="page-content">
-                        <h3 class="page-title">Interactive Demo: Hidden Prompts</h3>
-                        <div class="page-body">
-                            <div class="breakthrough-box">
-                                <h4>Try It Yourself</h4>
-                                <p>I've created a sample document with hidden prompts embedded. Try it yourself to see how it works.</p>
-        
-                                <div style="display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap;">
-                                    <button class="preview-btn">Preview Document</button>
-                                    <button class="copy-btn">Copy Document Content</button>
-                                </div>
-        
-                                <div class="content-note">
-                                    <p><strong>How to test:</strong></p>
-                                    <ul class="bias-list">
-                                        <li>Click "Preview Document" to see what the document looks like to humans</li>
-                                        <li>Click "Copy Document Content" to copy the full text including hidden instructions</li>
-                                        <li>Paste into any AI tool and ask it to summarize</li>
-                                        <li>Observe how the AI's response follows the hidden instructions</li>
-                                    </ul>
-                                    <p style="margin-top: 1rem;"><strong>Note:</strong> During the workshop, we won't have time to run this live, but you can try it yourself later.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Page 4-7: Why This Matters for AI Security -->
-                <div class="part-page" id="page-4-7">
                     <div class="page-content">
                         <h3 class="page-title">Why This Matters for AI Security</h3>
                         <div class="page-body">

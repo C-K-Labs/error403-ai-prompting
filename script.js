@@ -532,93 +532,58 @@ const featureModalData = {
     'projects': {
         title: 'Projects (Claude & ChatGPT)',
         content: `
-            <h4>Separate Workspaces for Different Tasks</h4>
-            <p>Projects allow you to create separate workspaces with their own context, files, and conversation history. This is invaluable for organizing different tasks, maintaining context across multiple sessions, and keeping work separated by topic or client.</p>
+            <h4>Dedicated Workspaces for Specific Tasks</h4>
+            <p>Projects allow you to create separate workspaces with their own context, files, and conversation history. This prevents the AI from getting confused between different tasks (e.g., separating "Coding" from "Essay Writing").</p>
             
             <h4>Key Benefits</h4>
             <ul class="bias-list">
-                <li><strong>Context Preservation:</strong> Each project maintains its own conversation history and uploaded files</li>
-                <li><strong>Organization:</strong> Keep different tasks, clients, or topics completely separate</li>
-                <li><strong>Efficiency:</strong> No need to re-upload files or re-explain context every time</li>
-                <li><strong>Collaboration:</strong> Share project access with team members (in some plans)</li>
+                <li><strong>Context Isolation:</strong> Each project maintains its own history and uploaded files.</li>
+                <li><strong>No Repetition:</strong> Upload your brand guidelines or code documentation once, and the AI remembers it for every chat in that project.</li>
+                <li><strong>Custom Instructions:</strong> Set a specific persona (e.g., "Python Tutor") that applies automatically.</li>
             </ul>
-            
-            <h4>Availability</h4>
-            <p><strong>Claude:</strong> Available in Pro plan ($20/month)</p>
-            <p><strong>ChatGPT:</strong> Available in Plus plan ($20/month)</p>
         `
     },
     'artifacts': {
         title: 'Artifacts (Claude)',
         content: `
-            <h4>Interactive Content Creation Panel</h4>
-            <p>Artifacts enable Claude to create interactive, editable content in a separate panel. This includes code that runs in real-time, documents you can edit directly, diagrams, and other structured outputs. It transforms AI from a chat interface into a collaborative workspace.</p>
+            <h4>Interactive Content Creation</h4>
+            <p>Artifacts enable Claude to generate code, documents, and diagrams in a dedicated side panel. This transforms AI from a simple chatbot into a collaborative workspace.</p>
             
             <h4>What You Can Create</h4>
             <ul class="bias-list">
-                <li><strong>Interactive Code:</strong> HTML, React components, JavaScript that runs immediately</li>
-                <li><strong>Documents:</strong> Formatted text you can edit and export</li>
-                <li><strong>Diagrams:</strong> Flowcharts, diagrams using Mermaid syntax</li>
-                <li><strong>SVG Graphics:</strong> Custom vector graphics and visualizations</li>
+                <li><strong>Real-time Code:</strong> Preview HTML, CSS, and React apps instantly.</li>
+                <li><strong>Documents:</strong> Edit reports or emails in a clean document view side-by-side.</li>
+                <li><strong>Visualizations:</strong> Generate flowcharts and diagrams using Mermaid syntax.</li>
             </ul>
-            
-            <h4>Availability</h4>
-            <p><strong>Claude Pro:</strong> Full artifact capabilities ($20/month)</p>
-            <p><strong>Claude Free:</strong> Limited artifact features</p>
         `
     },
-    'token-limits': {
-        title: 'Token Limits Comparison',
+    'token-saving': {
+        title: 'Token Efficiency & Chat Management',
         content: `
-            <h4>Understanding Context Windows</h4>
-            <p>Token limits determine how much text you can process in a single conversation. Higher limits mean you can work with larger documents, maintain longer conversation histories, and handle more complex tasks.</p>
+            <h4>How to Keep AI Smarter for Longer</h4>
+            <p>AI models have a limited "Context Window". As a chat gets too long, the AI starts "forgetting" earlier instructions or becomes "lazy" (giving shorter answers).</p>
             
-            <h4>Model Comparison</h4>
+            <h4>Essential Efficiency Tips</h4>
             <ul class="bias-list">
-                <li><strong>Claude (Free):</strong> Limited messages per day, standard context window</li>
-                <li><strong>Claude Pro:</strong> 5x more messages, extended context window, priority access</li>
-                <li><strong>ChatGPT (Free):</strong> GPT-3.5 with standard limits</li>
-                <li><strong>ChatGPT Plus:</strong> GPT-4 access, higher message limits, faster response times</li>
-                <li><strong>Gemini (Free):</strong> Standard limits with Google account</li>
-                <li><strong>Gemini Advanced:</strong> Extended limits, priority access, integration with Google Workspace</li>
-                <li><strong>Perplexity (Free):</strong> Basic search with limited queries</li>
-                <li><strong>Perplexity Pro:</strong> Unlimited searches, file uploads, API access</li>
-            </ul>
-            
-            <h4>What This Means</h4>
-            <p>Higher token limits allow you to:</p>
-            <ul class="bias-list">
-                <li>Upload and analyze larger documents</li>
-                <li>Maintain context across longer conversations</li>
-                <li>Work with more complex codebases</li>
-                <li>Process multiple files simultaneously</li>
+                <li><strong>Start Fresh Often:</strong> Do not use one long chat for everything. Start a <strong>New Chat</strong> for every new topic or major section of your work.</li>
+                <li><strong>Edit, Don't Re-ask:</strong> If you made a typo or want to change a prompt, <strong>edit your previous message</strong> instead of sending a correction. This saves token usage by half.</li>
+                <li><strong>The First Prompt Matters:</strong> The system pays the most attention to the start of the conversation. Set clear rules immediately.</li>
+                <li><strong>Summarize Files:</strong> If uploading large documents, ask the AI to summarize key points first, then use that summary for the actual task.</li>
             </ul>
         `
     },
     'mem0': {
-        title: 'mem0 Extension - Free Alternative',
+        title: 'mem0 Extension',
         content: `
-            <h4>Browser Extension for Memory Management</h4>
-            <p>If paid subscriptions aren't an option, the mem0 browser extension provides some project-like functionality for free. It adds memory and context management to AI chat interfaces, allowing you to maintain continuity across conversations without paying for native project features.</p>
+            <h4>Free Long-Term Memory Tool</h4>
+            <p>mem0 is a browser extension that adds a "memory layer" to AI tools. It helps the AI remember your preferences across different sessions without needing paid subscriptions.</p>
             
             <h4>Key Features</h4>
             <ul class="bias-list">
-                <li><strong>Context Retention:</strong> Remembers information across conversations</li>
-                <li><strong>Cross-Platform:</strong> Works with multiple AI chat interfaces</li>
-                <li><strong>Free to Use:</strong> No subscription required</li>
-                <li><strong>Privacy-Focused:</strong> Data stored locally in your browser</li>
+                <li><strong>Cross-Session Memory:</strong> It remembers your coding style, tone preferences, or project details across new chats.</li>
+                <li><strong>User Control:</strong> You can manage exactly what the AI remembers or forgets about you.</li>
+                <li><strong>Efficiency:</strong> Reduces the need to copy-paste the same context prompts repeatedly.</li>
             </ul>
-            
-            <h4>Limitations</h4>
-            <ul class="bias-list">
-                <li>Not as robust as native project features</li>
-                <li>Limited file upload capabilities</li>
-                <li>Browser-dependent (doesn't sync across devices)</li>
-                <li>Requires manual memory management</li>
-            </ul>
-            
-            <h4>Best For</h4>
-            <p>Students on a budget who need basic context retention but can't afford paid plans. While not as powerful as Claude Projects or ChatGPT Plus, it's a solid option for maintaining conversation continuity.</p>
         `
     }
 };
