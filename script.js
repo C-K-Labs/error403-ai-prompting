@@ -10,155 +10,89 @@ const playButton = document.getElementById('play-button');
 const carolAudio = document.getElementById('carol-audio');
 const mainNav = document.getElementById('main-nav');
 const mainContent = document.getElementById('main-content');
-const mainFooter = document.getElementById('main-footer');
+const menuToggle = document.getElementById('menu-toggle');
+const menuDropdown = document.getElementById('menu-dropdown');
+const menuHome = document.querySelector('.menu-home');
 
 // ===================================
-// STATE
+// AUDIO & INTRO LOGIC
 // ===================================
 
 let isPlaying = false;
-let canTransition = false;
 let currentIntroPage = 1;
 
-// ===================================
-// AUDIO PLAYER
-// ===================================
+if (playButton && carolAudio) {
+    playButton.addEventListener('click', function () {
+        if (!isPlaying) {
+            carolAudio.play().catch(e => console.log('Audio error:', e));
+            isPlaying = true;
+            playButton.querySelector('.play-text').textContent = 'Playing...';
+            playButton.querySelector('.play-icon').textContent = '⏸';
+        } else {
+            carolAudio.pause();
+            isPlaying = false;
+            playButton.querySelector('.play-text').textContent = 'Play';
+            playButton.querySelector('.play-icon').textContent = '▶';
+        }
+    });
 
-playButton.addEventListener('click', function () {
-    if (!isPlaying) {
-        carolAudio.play().catch(function (error) {
-            console.log('Audio not available');
-            canTransition = true;
-        });
-
-        isPlaying = true;
-        playButton.querySelector('.play-text').textContent = 'Playing...';
-        playButton.querySelector('.play-icon').textContent = '⏸';
-    } else {
-        carolAudio.pause();
-        isPlaying = false;
-        playButton.querySelector('.play-text').textContent = 'Play';
-        playButton.querySelector('.play-icon').textContent = '▶';
-    }
-});
-
-carolAudio.addEventListener('ended', function () {
-    transitionToPage(2);
-});
-
-carolAudio.addEventListener('error', function () {
-    canTransition = true;
-});
-
-// ===================================
-// SWIPE/DRAG FUNCTIONALITY
-// ===================================
-
-let startX = 0;
-let startY = 0;
-let currentX = 0;
-let isDragging = false;
-let currentPage = null;
-
-function setupSwipe(page, pageNumber) {
-    page.addEventListener('mousedown', (e) => handleStart(e, page, pageNumber));
-    page.addEventListener('mousemove', (e) => handleMove(e, page));
-    page.addEventListener('mouseup', (e) => handleEnd(e, page, pageNumber));
-    page.addEventListener('mouseleave', (e) => handleEnd(e, page, pageNumber));
-
-    page.addEventListener('touchstart', (e) => handleStart(e, page, pageNumber));
-    page.addEventListener('touchmove', (e) => handleMove(e, page));
-    page.addEventListener('touchend', (e) => handleEnd(e, page, pageNumber));
+    carolAudio.addEventListener('ended', function () {
+        transitionToPage(2);
+    });
 }
-
-function handleStart(e, page, pageNumber) {
-    isDragging = true;
-    currentPage = pageNumber;
-
-    if (e.type === 'touchstart') {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-    } else {
-        startX = e.clientX;
-        startY = e.clientY;
-    }
-}
-
-function handleMove(e, page) {
-    if (!isDragging) return;
-
-    if (e.type === 'touchmove') {
-        currentX = e.touches[0].clientX;
-    } else {
-        currentX = e.clientX;
-    }
-
-    const deltaX = currentX - startX;
-
-    if (Math.abs(deltaX) > 10) {
-        e.preventDefault();
-        page.style.transform = `translateX(${deltaX * 0.3}px)`;
-        page.style.opacity = 1 - Math.abs(deltaX) / 1000;
-    }
-}
-
-function handleEnd(e, page, pageNumber) {
-    if (!isDragging) return;
-    isDragging = false;
-
-    const deltaX = currentX - startX;
-    const threshold = 100;
-
-    if (deltaX < -threshold) {
-        // Swipe left - next page
-        transitionToPage(pageNumber + 1);
-    } else if (deltaX > threshold && pageNumber > 1) {
-        // Swipe right - previous page
-        transitionToPage(pageNumber - 1);
-    } else {
-        // Reset
-        page.style.transform = 'translateX(0)';
-        page.style.opacity = '1';
-    }
-}
-
-// Setup swipe for all intro pages
-setupSwipe(introPage1, 1);
-setupSwipe(introPage2, 2);
-setupSwipe(introPage3, 3);
-
-// ===================================
-// PAGE TRANSITIONS
-// ===================================
 
 function transitionToPage(targetPage) {
     const pages = [null, introPage1, introPage2, introPage3];
-
     if (targetPage < 1 || targetPage > 3) return;
 
-    // Hide current page
     if (currentIntroPage >= 1 && currentIntroPage <= 3) {
         const currentPageEl = pages[currentIntroPage];
         currentPageEl.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
         currentPageEl.style.transform = targetPage > currentIntroPage ? 'translateX(-100%)' : 'translateX(100%)';
         currentPageEl.style.opacity = '0';
-
         setTimeout(() => {
             currentPageEl.classList.remove('active');
             currentPageEl.style.transform = 'translateX(0)';
             currentPageEl.style.opacity = '1';
         }, 500);
     }
-
-    // Show target page
     setTimeout(() => {
         pages[targetPage].classList.add('active');
         currentIntroPage = targetPage;
     }, 500);
 }
 
+// Swipe Logic
+let startX = 0;
+let isDragging = false;
+
+function setupSwipe(page, pageNumber) {
+    const handleStart = (e) => {
+        isDragging = true;
+        startX = (e.type === 'touchstart') ? e.touches[0].clientX : e.clientX;
+    };
+    const handleEnd = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const currentX = (e.type === 'touchend') ? e.changedTouches[0].clientX : e.clientX;
+        const deltaX = currentX - startX;
+        
+        if (deltaX < -50) transitionToPage(pageNumber + 1);
+        else if (deltaX > 50 && pageNumber > 1) transitionToPage(pageNumber - 1);
+    };
+
+    page.addEventListener('mousedown', handleStart);
+    page.addEventListener('mouseup', handleEnd);
+    page.addEventListener('touchstart', handleStart);
+    page.addEventListener('touchend', handleEnd);
+}
+
+if (introPage1) setupSwipe(introPage1, 1);
+if (introPage2) setupSwipe(introPage2, 2);
+if (introPage3) setupSwipe(introPage3, 3);
+
 // ===================================
-// PART MENU NAVIGATION
+// NAVIGATION & MENU
 // ===================================
 
 const partMenuItems = document.querySelectorAll('.part-menu-item');
@@ -166,451 +100,231 @@ const partMenuItems = document.querySelectorAll('.part-menu-item');
 partMenuItems.forEach(item => {
     item.addEventListener('click', function (e) {
         e.preventDefault();
-
         const targetId = this.getAttribute('href');
         const partNumber = this.getAttribute('data-part');
 
-        // Show only selected part
-        showSinglePart(partNumber);
+        if (introSection) introSection.style.display = 'none';
+        if (mainNav) mainNav.classList.remove('hidden');
+        if (mainContent) mainContent.classList.remove('hidden');
 
-        // Show main content
-        showMainContent();
-
-        // Scroll to the part
-        setTimeout(() => {
-            scrollToSection(targetId);
-        }, 100);
+        document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+        
+        const selectedPart = document.querySelector(targetId);
+        if (selectedPart) {
+            selectedPart.style.display = 'block';
+            setupPartNavigation(partNumber);
+        }
     });
 });
 
-function showMainContent() {
-    introSection.style.display = 'none';
-    mainNav.classList.remove('hidden');
-    mainContent.classList.remove('hidden');
-    mainFooter.classList.remove('hidden');
-    window.scrollTo(0, 0);
-}
-
-function showSinglePart(partNumber) {
-    // Hide all parts first
-    const allParts = document.querySelectorAll('.content-section');
-    allParts.forEach(part => {
-        part.style.display = 'none';
-    });
-
-    // Show only selected part
-    const selectedPart = document.getElementById('part' + partNumber);
-    if (selectedPart) {
-        selectedPart.style.display = 'block';
-    }
-}
-
-function showAllParts() {
-    const allParts = document.querySelectorAll('.content-section');
-    allParts.forEach(part => {
-        part.style.display = 'block';
-    });
-}
-
-// ===================================
-// MENU FUNCTIONALITY
-// ===================================
-
-const menuToggle = document.getElementById('menu-toggle');
-const menuDropdown = document.getElementById('menu-dropdown');
-const menuPartToggles = document.querySelectorAll('.menu-part-toggle');
-const menuHome = document.querySelector('.menu-home');
-
-// Toggle menu dropdown
-menuToggle.addEventListener('click', function (e) {
-    e.stopPropagation();
-    menuDropdown.classList.toggle('active');
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', function (e) {
-    if (!menuDropdown.contains(e.target) && e.target !== menuToggle) {
-        menuDropdown.classList.remove('active');
-    }
-});
-
-// Toggle part subsections
-menuPartToggles.forEach(toggle => {
-    toggle.addEventListener('click', function (e) {
+if (menuToggle && menuDropdown) {
+    menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-
-        const partNum = this.getAttribute('data-part');
-        const subsections = document.querySelector(`.menu-subsections[data-part="${partNum}"]`);
-
-        // Toggle active state
-        this.classList.toggle('active');
-        subsections.classList.toggle('active');
-
-        // Close other parts (optional)
-        menuPartToggles.forEach(otherToggle => {
-            if (otherToggle !== this) {
-                otherToggle.classList.remove('active');
-                const otherPartNum = otherToggle.getAttribute('data-part');
-                const otherSubsections = document.querySelector(`.menu-subsections[data-part="${otherPartNum}"]`);
-                if (otherSubsections) {
-                    otherSubsections.classList.remove('active');
-                }
-            }
-        });
+        menuDropdown.classList.toggle('active');
     });
-});
-
-// Menu subsection navigation
-const menuSubsections = document.querySelectorAll('.menu-subsection');
-
-menuSubsections.forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-            // Show all parts first (fixes navigation from single-part view)
-            showAllParts();
-
-            // Close menu
+    document.addEventListener('click', (e) => {
+        if (!menuDropdown.contains(e.target) && e.target !== menuToggle) {
             menuDropdown.classList.remove('active');
+        }
+    });
+}
 
-            // Update current indicator
-            updateCurrentSection(targetId);
-
-            // Scroll to section
-            const navHeight = 100; // Approximate offset
-            const targetPosition = targetSection.offsetTop - navHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+document.querySelectorAll('.menu-part-toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const partNum = this.getAttribute('data-part');
+        const section = document.getElementById(`part${partNum}`);
+        if(section) {
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            section.style.display = 'block';
+            setupPartNavigation(partNum);
+            menuDropdown.classList.remove('active');
         }
     });
 });
 
-// Menu Home navigation
-menuHome.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    // Show all parts again
-    showAllParts();
-
-    // Hide main content
-    menuDropdown.classList.remove('active');
-    mainNav.classList.add('hidden');
-    mainContent.classList.add('hidden');
-    mainFooter.classList.add('hidden');
-
-    // Show intro section at part menu
-    introSection.style.display = 'flex';
-    introPage1.classList.remove('active');
-    introPage2.classList.remove('active');
-    introPage3.classList.add('active');
-    currentIntroPage = 3;
-});
-
-// Update current section indicator
-function updateCurrentSection(sectionId) {
-    menuSubsections.forEach(link => {
-        link.classList.remove('current');
-        if (link.getAttribute('href') === sectionId) {
-            link.classList.add('current');
+if (menuHome) {
+    menuHome.addEventListener('click', (e) => {
+        e.preventDefault();
+        menuDropdown.classList.remove('active');
+        mainNav.classList.add('hidden');
+        mainContent.classList.add('hidden');
+        if (introSection) {
+            introSection.style.display = 'flex';
+            currentIntroPage = 3;
+            introPage1.classList.remove('active');
+            introPage2.classList.remove('active');
+            introPage3.classList.add('active');
         }
     });
 }
 
 // ===================================
-// COPY BUTTON FUNCTIONALITY
+// PART PAGINATION SYSTEM
 // ===================================
 
-const copyButtons = document.querySelectorAll('.copy-btn');
+function setupPartNavigation(partNum) {
+    const partSection = document.getElementById(`part${partNum}`);
+    if (!partSection) return;
 
-copyButtons.forEach(button => {
-    button.addEventListener('click', function () {
-        const promptText = this.getAttribute('data-prompt');
+    const pages = partSection.querySelectorAll('.part-page');
+    const totalPages = pages.length;
+    let currentPage = 1;
 
-        // Copy to clipboard
-        navigator.clipboard.writeText(promptText).then(() => {
-            // Visual feedback
-            const originalText = this.textContent;
-            this.textContent = 'Copied!';
-            this.classList.add('copied');
+    const prevBtn = document.getElementById(`prev-page-${partNum}`);
+    const nextBtn = document.getElementById(`next-page-${partNum}`);
 
-            // Reset after 2 seconds
-            setTimeout(() => {
-                this.textContent = originalText;
-                this.classList.remove('copied');
-            }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy:', err);
-            this.textContent = 'Failed';
+    function showPage(pageNumber) {
+        if (pageNumber < 1 || pageNumber > totalPages) return;
+        
+        pages.forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById(`page-${partNum}-${pageNumber}`);
+        
+        if (targetPage) {
+            targetPage.classList.add('active');
+            currentPage = pageNumber;
+            partSection.querySelector('.part-container').scrollTop = 0;
+            targetPage.scrollTop = 0;
 
-            setTimeout(() => {
-                this.textContent = 'Copy';
-            }, 2000);
-        });
-    });
-});
-
-// ===================================
-// NEXT PART NAVIGATION
-// ===================================
-
-const nextPartLinks = document.querySelectorAll('.next-part-link');
-
-nextPartLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href');
-        const nextPartNum = this.getAttribute('data-next-part');
-
-        // Show only next part
-        if (nextPartNum) {
-            showSinglePart(nextPartNum);
+            if (prevBtn) prevBtn.disabled = (currentPage === 1);
+            if (nextBtn) {
+                if (currentPage === totalPages) {
+                    const nextPartNum = parseInt(partNum) + 1;
+                    const nextPartSection = document.getElementById(`part${nextPartNum}`);
+                    
+                    if (nextPartSection) {
+                        nextBtn.textContent = `Next: Part ${nextPartNum} →`;
+                        nextBtn.onclick = () => {
+                            partSection.style.display = 'none';
+                            nextPartSection.style.display = 'block';
+                            setupPartNavigation(nextPartNum);
+                        };
+                    } else {
+                        nextBtn.textContent = 'Finish';
+                        nextBtn.onclick = () => alert('Workshop Completed!');
+                    }
+                } else {
+                    nextBtn.textContent = 'Next →';
+                    nextBtn.onclick = () => showPage(currentPage + 1);
+                }
+            }
         }
+    }
 
-        // Scroll to part
+    if (prevBtn) prevBtn.onclick = () => showPage(currentPage - 1);
+    showPage(1);
+}
+
+// ===================================
+// UTILITIES & MODAL DATA
+// ===================================
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(this.getAttribute('data-prompt'));
+        const original = this.textContent;
+        this.textContent = 'Copied!';
+        this.classList.add('copied');
         setTimeout(() => {
-            scrollToSection(targetId);
-        }, 100);
+            this.textContent = original;
+            this.classList.remove('copied');
+        }, 2000);
     });
 });
 
-function scrollToSection(targetId) {
-    const targetSection = document.querySelector(targetId);
+const detailModal = document.getElementById('detail-modal');
+const modalTitle = detailModal ? detailModal.querySelector('.modal-title') : null;
+const modalBody = detailModal ? detailModal.querySelector('.modal-body') : null;
+const modalClose = detailModal ? detailModal.querySelector('.modal-close') : null;
 
-    if (targetSection) {
-        const navHeight = 80;
-        const targetPosition = targetSection.offsetTop - navHeight;
-
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    }
+function openModal(title, content) {
+    if (!detailModal) return;
+    modalTitle.textContent = title;
+    modalBody.innerHTML = content;
+    detailModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
-// ===================================
-// SCROLL POSITION TRACKING
-// ===================================
+function closeModal() {
+    if (!detailModal) return;
+    detailModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-let lastScrollPosition = 0;
-
-window.addEventListener('scroll', function () {
-    const currentScrollPosition = window.scrollY;
-
-    // Update menu current section based on visible section
-    const sections = document.querySelectorAll('.subsection');
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        const viewportMiddle = currentScrollPosition + window.innerHeight / 2;
-
-        if (viewportMiddle >= sectionTop && viewportMiddle < sectionBottom) {
-            const sectionId = '#' + section.id;
-            updateCurrentSection(sectionId);
-        }
+if (detailModal) {
+    modalClose.addEventListener('click', closeModal);
+    detailModal.addEventListener('click', (e) => {
+        if (e.target === detailModal) closeModal();
     });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+}
 
-    lastScrollPosition = currentScrollPosition;
+const commandmentData = {
+    verify: {
+        title: '1. Never Trust, Always Verify',
+        content: `<h4>Category: Accuracy & Verification</h4>
+            <p>This is the most critical principle. AI models generate responses based on pattern prediction, not factual databases.</p>
+            <h4>How to Apply</h4>
+            <ul class="bias-list">
+                <li><strong>Cross-reference important facts:</strong> Check AI outputs against reliable sources.</li>
+                <li><strong>Ask for sources:</strong> Request the AI to cite where information comes from.</li>
+                <li><strong>Use multiple AI tools:</strong> Compare responses across different models.</li>
+            </ul>`
+    },
+    specific: {
+        title: '2. Be Specific, Be Clear',
+        content: `<h4>Category: Instruction Precision</h4>
+            <p>Vague prompts produce vague results. AI models perform significantly better when given clear, specific instructions.</p>
+            <h4>How to Apply</h4>
+            <ul class="bias-list">
+                <li><strong>Define the task precisely:</strong> Instead of "write about X", say "write a 500-word blog post about X".</li>
+                <li><strong>Set clear constraints:</strong> Word count, format, tone, structure.</li>
+            </ul>`
+    },
+    fingerprints: {
+        title: '3. Erase AI Fingerprints',
+        content: `<h4>Category: Output Quality</h4>
+            <p>AI-generated content often has telltale patterns like "Moreover," "Furthermore," or excessive formality.</p>
+            <h4>How to Apply</h4>
+            <ul class="bias-list">
+                <li><strong>Request natural language:</strong> Ask for conversational writing.</li>
+                <li><strong>Ban specific phrases:</strong> Explicitly tell AI to avoid common crutches.</li>
+            </ul>`
+    },
+    questions: {
+        title: '4. Make AI Ask Questions',
+        content: `<h4>Category: Interactive Refinement</h4>
+            <p>AI shouldn't make assumptions when instructions are unclear. Encouraging it to ask clarifying questions leads to better outputs.</p>`
+    },
+    breakdown: {
+        title: '5. Break It Down',
+        content: `<h4>Category: Task Management</h4>
+            <p>Large, complex tasks overwhelm AI models. Breaking problems into smaller steps dramatically improves output quality.</p>`
+    }
+};
+
+const frameworkData = {
+    rte: { title: 'RTE Framework', content: '<p>Role, Task, Expectation. Simple but effective for quick tasks.</p>' },
+    crispe: { title: 'CRISPE Framework', content: '<p>Capacity, Role, Insight, Statement, Personality, Experiment.</p>' },
+    costar: { title: 'CO-STAR Framework', content: '<p>Context, Objective, Style, Tone, Audience, Response.</p>' },
+    fewshot: { title: 'Few-Shot Dilemma', content: '<p>Research shows providing too many examples can sometimes degrade performance (Overfitting).</p>' },
+    overprompt: { title: 'Over-Prompting', content: '<p>Excessive constraints can confuse the AI. Balance guidance with flexibility.</p>' },
+    json: { title: 'JSON Prompting', content: '<p>Using JSON structure in prompts helps get consistent, parseable data outputs.</p>' }
+};
+
+document.querySelectorAll('.commandment-card').forEach(c => {
+    c.addEventListener('click', () => {
+        const d = commandmentData[c.getAttribute('data-commandment')];
+        if(d) openModal(d.title, d.content);
+    });
 });
 
-// ===================================
-// INITIALIZE
-// ===================================
-
-// Open Part 1 by default in menu
-const part1Toggle = document.querySelector('.menu-part-toggle[data-part="1"]');
-if (part1Toggle) {
-    setTimeout(() => {
-        part1Toggle.click();
-    }, 100);
-}
-
-console.log('Workshop website loaded successfully!');
-console.log('Created by Chang Hyun Kim');
-console.log('Swipe left/right to navigate');
-
-// ===================================
-// VERTICAL SECTION SWIPE
-// ===================================
-
-let touchStartY = 0;
-let touchEndY = 0;
-
-function handleVerticalSwipe() {
-    const swipeThreshold = 50;
-    const swipeDistance = touchStartY - touchEndY;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-        const sections = document.querySelectorAll('.subsection');
-        const currentScrollPosition = window.scrollY;
-
-        let targetSection = null;
-
-        if (swipeDistance > 0) {
-            // Swipe up - next section
-            sections.forEach(section => {
-                if (section.offsetTop > currentScrollPosition + 100 && !targetSection) {
-                    targetSection = section;
-                }
-            });
-        } else {
-            // Swipe down - previous section
-            const reverseSections = Array.from(sections).reverse();
-            reverseSections.forEach(section => {
-                if (section.offsetTop < currentScrollPosition - 100 && !targetSection) {
-                    targetSection = section;
-                }
-            });
-        }
-
-        if (targetSection) {
-            window.scrollTo({
-                top: targetSection.offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    }
-}
-
-if (mainContent) {
-    mainContent.addEventListener('touchstart', e => {
-        touchStartY = e.changedTouches[0].screenY;
+document.querySelectorAll('.framework-item').forEach(i => {
+    i.addEventListener('click', () => {
+        const d = frameworkData[i.getAttribute('data-framework')];
+        if(d) openModal(d.title, d.content);
     });
+});
 
-    mainContent.addEventListener('touchend', e => {
-        touchEndY = e.changedTouches[0].screenY;
-        handleVerticalSwipe();
-    });
-}
-
-// Mouse wheel support for section navigation
-let isScrolling = false;
-
-mainContent.addEventListener('wheel', (e) => {
-    if (isScrolling) return;
-
-    isScrolling = true;
-    setTimeout(() => {
-        isScrolling = false;
-    }, 1000);
-
-    const sections = document.querySelectorAll('.subsection');
-    const currentScrollPosition = window.scrollY;
-
-    let targetSection = null;
-
-    if (e.deltaY > 0) {
-        // Scroll down - next section
-        sections.forEach(section => {
-            if (section.offsetTop > currentScrollPosition + 100 && !targetSection) {
-                targetSection = section;
-            }
-        });
-    } else {
-        // Scroll up - previous section
-        const reverseSections = Array.from(sections).reverse();
-        reverseSections.forEach(section => {
-            if (section.offsetTop < currentScrollPosition - 100 && !targetSection) {
-                targetSection = section;
-            }
-        });
-    }
-
-    if (targetSection) {
-        e.preventDefault();
-        window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: 'smooth'
-        });
-    }
-}, { passive: false });
-
-// ===================================
-// MOUSE DRAG SWIPE (like intro pages)
-// ===================================
-
-let dragStartY = 0;
-let dragCurrentY = 0;
-let isDraggingVertical = false;
-
-if (mainContent) {
-    mainContent.addEventListener('mousedown', (e) => {
-        // Don't interfere with buttons, links, inputs
-        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) {
-            return;
-        }
-
-        isDraggingVertical = true;
-        dragStartY = e.clientY;
-        mainContent.style.cursor = 'grabbing';
-        mainContent.style.userSelect = 'none';
-    });
-
-    mainContent.addEventListener('mousemove', (e) => {
-        if (!isDraggingVertical) return;
-
-        dragCurrentY = e.clientY;
-    });
-
-    mainContent.addEventListener('mouseup', (e) => {
-        if (!isDraggingVertical) return;
-
-        isDraggingVertical = false;
-        mainContent.style.cursor = 'default';
-        mainContent.style.userSelect = 'auto';
-
-        const deltaY = dragCurrentY - dragStartY;
-        const threshold = 80;
-
-        if (Math.abs(deltaY) > threshold) {
-            const sections = document.querySelectorAll('.subsection');
-            const currentScrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-
-            let targetSection = null;
-
-            if (deltaY < 0) {
-                // Dragged down - next section
-                sections.forEach(section => {
-                    if (section.offsetTop > currentScrollPosition + windowHeight / 3 && !targetSection) {
-                        targetSection = section;
-                    }
-                });
-            } else {
-                // Dragged up - previous section
-                const reverseSections = Array.from(sections).reverse();
-                reverseSections.forEach(section => {
-                    if (section.offsetTop < currentScrollPosition - windowHeight / 3 && !targetSection) {
-                        targetSection = section;
-                    }
-                });
-            }
-
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        dragStartY = 0;
-        dragCurrentY = 0;
-    });
-
-    mainContent.addEventListener('mouseleave', () => {
-        if (isDraggingVertical) {
-            isDraggingVertical = false;
-            mainContent.style.cursor = 'default';
-            mainContent.style.userSelect = 'auto';
-        }
-    });
-}
+console.log('Full content workshop loaded.');
