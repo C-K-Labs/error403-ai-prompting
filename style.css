@@ -698,3 +698,60 @@ body {
 .section-header-with-btn .copy-btn {
     flex-shrink: 0;
 }
+
+/* ===================================
+   MOBILE RESPONSIVE FIXES (Add to bottom of style.css)
+   =================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Fix Intro Menu Truncation (Allow Scrolling) */
+    .intro-page {
+        overflow-y: auto !important;
+        padding-top: 4rem; /* Ensure space at top */
+    }
+    .part-menu-content {
+        height: auto !important;
+        min-height: 100%;
+        padding-bottom: 4rem;
+        justify-content: flex-start; /* Align from top */
+    }
+    .part-menu-grid {
+        grid-template-columns: 1fr; /* Single column */
+        padding-bottom: 2rem;
+    }
+
+    /* 2. Fix Horizontal Overflow in Tools (Force Wrap) */
+    .tool-grid, 
+    .tool-grid[style] { /* Override inline styles */
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns for mobile */
+        width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* 3. Simplify Part Label (Top Right) */
+    .part-label {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 1rem !important;
+        right: 1rem !important;
+        top: 1rem !important;
+        max-width: 40%; /* Prevent overlap with menu button */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Hides the subtitle (e.g., ": Foundation") on mobile */
+    /* Requires HTML change: <span class="desktop-label">...</span> */
+    .desktop-label {
+        display: none !important;
+    }
+}
+
+/* Fix for very small screens (older phones) */
+@media (max-width: 400px) {
+    .tool-grid, 
+    .tool-grid[style] {
+        grid-template-columns: 1fr !important; /* Single column */
+    }
+}
