@@ -930,33 +930,299 @@
         </section>
 
         <section id="part5" class="content-section part5-section" style="display: none;">
-            <div class="part-label">Part 5: Resources</div>
+            <div class="part-label">Part 5: Wrap-up & Resources</div>
             <div class="part-container">
+                
+                <!-- Page 5-1: Key Takeaways -->
                 <div class="part-page active" id="page-5-1">
                     <div class="page-content">
                         <h3 class="page-title">Key Takeaways</h3>
                         <div class="page-body">
-                            <div class="takeaways-container">
-                                <div class="takeaway-card"><h4>AI is a Tool</h4></div>
-                                <div class="takeaway-card"><h4>Always Verify</h4></div>
+                            <div class="commandments-grid">
+                                <div class="commandment-card">
+                                    <div class="commandment-number">1</div>
+                                    <div class="commandment-title">AI is a Tool, Not a Replacement</div>
+                                    <div class="commandment-preview">AI augments human capability but cannot replace critical thinking, creativity, and judgment. Use it to enhance your work, not to avoid learning or thinking.</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">2</div>
+                                    <div class="commandment-title">Understanding Beats Blind Usage</div>
+                                    <div class="commandment-preview">Knowing how AI works, its limitations, and its biases allows you to use it effectively. Blindly accepting outputs without understanding leads to poor results and potential errors.</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">3</div>
+                                    <div class="commandment-title">Critical Thinking is Essential</div>
+                                    <div class="commandment-preview">Question AI outputs. Challenge inconsistencies. Verify facts. Your ability to evaluate and refine AI-generated content is more valuable than the AI itself.</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">4</div>
+                                    <div class="commandment-title">Always Verify Outputs</div>
+                                    <div class="commandment-preview">Hallucinations are real and common. Never assume AI information is accurate without verification. Cross-reference important facts and check sources.</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">5</div>
+                                    <div class="commandment-title">Prompting is a Skill</div>
+                                    <div class="commandment-preview">Effective AI usage requires practice and experimentation. Develop your own prompting style through trial and error. What works for others may not work for you.</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+        
+                <!-- Page 5-2: Cross-Verification Methods -->
                 <div class="part-page" id="page-5-2">
+                    <div class="page-content">
+                        <h3 class="page-title">Cross-Verification Methods</h3>
+                        <div class="page-body">
+                            <p>Never trust AI outputs blindly. Use these systematic approaches to verify accuracy and catch hallucinations before they cause problems.</p>
+        
+                            <div class="framework-list" style="margin-top: 2rem;">
+                                <div class="framework-item" data-verification="method1">
+                                    <div class="framework-item-header">
+                                        <h4>Method 1: Ask AI to Self-Verify</h4>
+                                        <span class="framework-expand-icon">→</span>
+                                    </div>
+                                    <p>Challenge the AI's own response by asking it to verify its claims</p>
+                                    <div class="verification-detail" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f5f5f7;">
+                                        <p>Ask: "Are you certain about this information? Can you double-check for accuracy?" This often prompts the model to reconsider and correct errors.</p>
+                                        <div class="content-note">
+                                            <p><strong>Example:</strong> After receiving an answer, follow up with "Please verify each fact you stated and indicate your confidence level for each claim."</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="framework-item" data-verification="method2">
+                                    <div class="framework-item-header">
+                                        <h4>Method 2: Cross-Check with Different AI Models</h4>
+                                        <span class="framework-expand-icon">→</span>
+                                    </div>
+                                    <p>Compare responses across multiple AI tools to identify discrepancies</p>
+                                    <div class="verification-detail" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f5f5f7;">
+                                        <p>Input the same query into multiple AI tools (Claude, ChatGPT, Gemini). Compare responses to identify discrepancies. Consistent answers across models are more likely to be accurate.</p>
+                                        <div class="content-note">
+                                            <p><strong>Alternative approach:</strong> Take the output from one AI and ask another AI: "Please fact-check the following information and identify any inaccuracies."</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="framework-item" data-verification="method3">
+                                    <div class="framework-item-header">
+                                        <h4>Method 3: Manual Review and Fact-Checking</h4>
+                                        <span class="framework-expand-icon">→</span>
+                                    </div>
+                                    <p>Check specific claims against reliable sources</p>
+                                    <div class="verification-detail" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f5f5f7;">
+                                        <p>Read the entire output from start to finish. Check specific claims against reliable sources. Pay special attention to statistics, dates, names, and technical details where hallucinations commonly occur.</p>
+                                        <div class="content-note">
+                                            <p><strong>Focus areas:</strong> Numbers and statistics, historical dates and events, citations and references, technical terminology, cause-and-effect relationships.</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="framework-item" data-verification="method4">
+                                    <div class="framework-item-header">
+                                        <h4>Method 4: Request Sources and Citations</h4>
+                                        <span class="framework-expand-icon">→</span>
+                                    </div>
+                                    <p>Verify that cited sources actually exist and support the claims</p>
+                                    <div class="verification-detail" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f5f5f7;">
+                                        <p>Ask AI to provide sources for its claims, then verify those sources actually exist and say what the AI claims they say. AI often fabricates plausible-sounding citations.</p>
+                                        <div class="content-note">
+                                            <p><strong>Example prompt:</strong> "Provide specific sources with URLs for each major claim in your response. I will be verifying these sources."</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="framework-item" data-verification="method5">
+                                    <div class="framework-item-header">
+                                        <h4>Method 5: Test with Known Information</h4>
+                                        <span class="framework-expand-icon">→</span>
+                                    </div>
+                                    <p>Test AI reliability with questions you already know the answer to</p>
+                                    <div class="verification-detail" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #f5f5f7;">
+                                        <p>Before relying on AI for important information, test it with questions where you already know the answer. This helps you gauge the model's reliability for your specific use case.</p>
+                                        <div class="content-note">
+                                            <p><strong>Strategy:</strong> If researching a topic, start with basic facts you can verify, then progressively move to more complex queries as confidence builds.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="breakthrough-box" style="margin-top: 2rem;">
+                                <h4>Remember</h4>
+                                <p>The time spent verifying is always less than the time spent fixing problems caused by incorrect information. Build verification into your workflow from the start.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Page 5-3: Additional Resources -->
+                <div class="part-page" id="page-5-3">
+                    <div class="page-content">
+                        <h3 class="page-title">Additional Resources</h3>
+                        <div class="page-body">
+                            <p>Continue your AI learning journey with these curated resources. All workshop materials are available for download and reference.</p>
+        
+                            <div class="breakthrough-box">
+                                <h4>Workshop Materials</h4>
+                                <p>Access all slides, code examples, prompt templates, and tool lists used in this workshop.</p>
+                                
+                                <div class="content-note">
+                                    <p><strong>Complete Workshop Package</strong></p>
+                                    <p>Includes presentation slides, code examples, prompt templates, tool lists, and all reference materials.</p>
+                                    <p><a href="https://github.com/C-K-Labs" target="_blank" style="color: #667eea; font-weight: 600;">View on GitHub</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Page 5-4: Recommended X/Threads Accounts -->
+                <div class="part-page" id="page-5-4">
+                    <div class="page-content">
+                        <h3 class="page-title">Recommended X / Threads Accounts</h3>
+                        <div class="page-body">
+                            <p>Follow these accounts for cutting-edge AI news, techniques, and insights. They consistently share valuable content about AI developments and practical applications.</p>
+        
+                            <div class="commandments-grid">
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@AndrewYNg</div>
+                                    <div class="commandment-preview">AI education and industry insights</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@karpathy</div>
+                                    <div class="commandment-preview">Deep learning and AI research</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@OpenAI</div>
+                                    <div class="commandment-preview">Latest AI model releases and research</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@AnthropicAI</div>
+                                    <div class="commandment-preview">Claude updates and AI safety research</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@ylecun</div>
+                                    <div class="commandment-preview">AI research and machine learning insights</div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-number">X</div>
+                                    <div class="commandment-title">@hardmaru</div>
+                                    <div class="commandment-preview">Creative AI applications and research</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Page 5-5: Contact & Q&A -->
+                <div class="part-page" id="page-5-5">
                     <div class="page-content">
                         <h3 class="page-title">Contact & Q&A</h3>
                         <div class="page-body">
-                            <div class="contact-grid">
-                                <div class="contact-card"><h4>Email</h4><p>larry.k98@gmail.com</p></div>
+                            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem;">Questions? Feedback? Want to discuss AI further? Feel free to reach out through any of these channels.</p>
+
+                            <div class="commandments-grid">
+                                <div class="commandment-card">
+                                    <div class="commandment-number">@</div>
+                                    <div class="commandment-title">Email</div>
+                                    <div class="commandment-preview">
+                                        <p>larry.k98@gmail.com</p>
+                                        <button class="copy-btn" data-prompt="larry.k98@gmail.com" style="margin-top: 1rem;">Copy</button>
+                                    </div>
+                                </div>
+
+                                <a href="https://www.linkedin.com/in/chang-hyun-kim-ck" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit;">
+                                    <div class="commandment-number">in</div>
+                                    <div class="commandment-title">LinkedIn</div>
+                                    <div class="commandment-preview">Connect with me</div>
+                                </a>
+
+                                <a href="https://github.com/C-K-Labs" target="_blank" class="commandment-card" style="text-decoration: none; color: inherit;">
+                                    <div class="commandment-number">GH</div>
+                                    <div class="commandment-title">GitHub</div>
+                                    <div class="commandment-preview">View my projects</div>
+                                </a>
                             </div>
-                            <div class="thank-you-section"><h3>Thank You!</h3></div>
+
+                            <div class="breakthrough-box">
+                                <h4>Open Q&A</h4>
+                                <p>Now is your opportunity to ask any questions about AI usage, prompting techniques, tools, or anything we covered today. No question is too basic or too complex.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+        
+                <!-- Page 5-6: Copyright Information -->
+                <div class="part-page" id="page-5-6">
+                    <div class="page-content">
+                        <h3 class="page-title">Workshop Information</h3>
+                        <div class="page-body">
+                            <div class="commandments-grid">
+                                <div class="commandment-card">
+                                    <div class="commandment-title">Copyright</div>
+                                    <div class="commandment-preview">
+                                        <p>2024 Chang Hyun Kim. All rights reserved.</p>
+                                        <p>Workshop created for educational purposes at SUNY Westchester Community College</p>
+                                    </div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-title">Attributions</div>
+                                    <div class="commandment-preview">
+                                        <p>Music & Album Cover: Created with Suno AI</p>
+                                        <p>Font: Google Sans Flex (SIL Open Font License)</p>
+                                        <p>AI Tools: Claude, ChatGPT, Gemini, and others</p>
+                                        <p>Academic references cited in Resources section</p>
+                                    </div>
+                                </div>
+        
+                                <div class="commandment-card">
+                                    <div class="commandment-title">Legal</div>
+                                    <div class="commandment-preview">
+                                        <p>Third-party trademarks and logos are property of their respective owners.</p>
+                                        <p>Research content used under Fair Use for educational purposes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Page 5-7: Thank You -->
+                <div class="part-page" id="page-5-7">
+                    <div class="page-content">
+                        <h3 class="page-title">Thank You</h3>
+                        <div class="page-body">
+                            <div class="breakthrough-box">
+                                <h4>Thank You for Attending</h4>
+                                <p>Thank you for attending this workshop. I hope you have gained practical insights into using AI effectively.</p>
+                                
+                                <p>Remember: AI is a powerful tool, but your critical thinking and understanding make it truly valuable.</p>
+                                
+                                <p><strong>Keep learning, keep experimenting, and keep building.</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
             </div>
             <button class="part-nav-btn prev-btn" id="prev-page-5">← Previous</button>
-            <button class="part-nav-btn next-btn" id="next-page-5">Finish</button>
+            <button class="part-nav-btn next-btn" id="next-page-5">Next →</button>
         </section>
         
     </main>

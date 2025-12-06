@@ -677,4 +677,20 @@ document.querySelectorAll('[data-expand="token-limits"]').forEach(item => {
     });
 });
 
+// Cross-Verification Methods accordion functionality
+document.querySelectorAll('[data-verification]').forEach(item => {
+    item.addEventListener('click', function() {
+        const detail = this.querySelector('.verification-detail');
+        const icon = this.querySelector('.framework-expand-icon');
+        
+        if (detail.style.display === 'none' || !detail.style.display) {
+            detail.style.display = 'block';
+            icon.textContent = '↓';
+        } else {
+            detail.style.display = 'none';
+            icon.textContent = '→';
+        }
+    });
+});
+
 console.log('Full content workshop loaded.');
